@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.page.simplebusiness.mapper.VoteMapper">
+
+	<resultMap id="VoteEntityMapper" type="com.page.simplebusiness.entity.VoteEntity">
+		<id column="id" property="id"/>
+		<result column="user_name" property="userName"/>
+		<result column="logistic_rate" property="logisticRate"/>
+		<result column="hygien_rate" property="hygieneRate"/>
+		<result column="food_rate" property="foodRate"/>
+		<result column="estate_rate" property="estateRate"/>
+		<result column="suggestion" property="suggestion"/>
+	</resultMap>
+
+    <insert id="satisfyRate" parameterType="VoteEntity">
+	        insert into t_vote ( user_name, logistic_rate, hygien_rate, food_rate, estate_rate, suggestion ) values (#{userName}, #{logisticRate}, #{hygieneRate}, #{foodRate}, #{estateRate}, #{suggestion})
+	</insert>
+
+	<select id="queryVote" parameterType="VoteEntity" resultMap="VoteEntityMapper">
+	        select * from t_vote  where user_name = #{userName}
+	</select>
+</mapper>
+

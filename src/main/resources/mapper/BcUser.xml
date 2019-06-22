@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.page.simplebusiness.mapper.BcUserMapper">
+    <insert id="add" parameterType="BcUserEntity">
+	        insert into t_user ( user_name, password ) values (#{userName}, #{password})
+	</insert>
+
+    <delete id="delete" parameterType="BcUserEntity">
+	        delete from t_user where id= #{id}
+	</delete>
+
+    <select id="get" parameterType="_int" resultType="BcUserEntity">
+	        select * from t_user  where id= #{id}
+	</select>
+
+	<select id="getByNameAndPassword" parameterType="BcUserEntity" resultType="BcUserEntity">
+	        select * from t_user  where user_name = #{userName} and password = #{password}
+	</select>
+
+    <update id="update" parameterType="BcUserEntity">
+	        update t_user set user_name=#{userName} where id=#{id}
+	</update>
+    <select id="list" resultType="BcUserEntity">
+	        select a.id as id, a.user_name as userName, a.password as password from  t_user a
+	</select>
+</mapper>
+
